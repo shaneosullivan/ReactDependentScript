@@ -49,7 +49,7 @@ You can also load other interesting libraries, like Stripe
   loadingComponent={<div>Loading Stripe...</div>}
   scripts={['https://js.stripe.com/v3/']}
 >
-  <div>Stripe script is loaded, here is your card f!</div>
+  <div>Stripe script is loaded, here is your card!</div>
   <StripeProvider apiKey="pk_test_YOUR_KEY_HERE">
     <Elements>
       <CheckoutFormElements
