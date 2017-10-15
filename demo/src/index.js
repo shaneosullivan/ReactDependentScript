@@ -21,7 +21,7 @@ class Demo extends Component {
           renderChildren={() => {
             return (
               <div>
-                <div>JQuery & JQueryUI script is loaded, here's a count and a date picker!</div>
+                <div>JQuery & JQueryUI script is loaded, here is a count and a date picker!</div>
                 <div>
                   Found {$('*').length} nodes in the page
                 </div>
