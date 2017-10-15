@@ -18,7 +18,7 @@ To use it, wrap your custom content in the component, providing an array of URLs
 to load, and optionally a `loadingComponent` property containing a component to show while loading
 e.g.
 
-```
+```JSX
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
   scripts={[https://code.jquery.com/jquery-3.2.1.min.js]}
@@ -31,7 +31,7 @@ An alternative to rendering the child components is to provide a callback functi
 `renderChildren` prop.  This can be useful when you need to execute code that is only available
 after the remote script is loaded, e.g.
 
-```
+```JSX
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
   scripts={[https://code.jquery.com/jquery-3.2.1.min.js]}
