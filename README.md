@@ -42,6 +42,30 @@ after the remote script is loaded, e.g.
 </ReactDependentScript>
 ```
 
+You can also load other interesting libraries, like Stripe
+
+```JSX
+<ReactDependentScript
+  loadingComponent={<div>Loading Stripe...</div>}
+  scripts={['https://js.stripe.com/v3/']}
+>
+  <div>Stripe script is loaded, here is your card f!</div>
+  <StripeProvider apiKey="pk_test_YOUR_KEY_HERE">
+    <Elements>
+      <CheckoutFormElements
+        submitText="Submit"
+        onTokenCreated={data => {
+          console.log('token created', data);
+        }}
+        onTokenCreationFailed={data => {
+          console.log('token failed', data);
+        }}
+      />
+    </Elements>
+  </StripeProvider>
+</ReactDependentScript>
+```
+
 See the `demo/index.js` file for more complex examples, including loading CSS files.
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square

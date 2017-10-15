@@ -45,7 +45,19 @@ class Demo extends Component {
             scripts={['https://js.stripe.com/v3/']}
           >
             <div>Stripe script is loaded, here is your card f!</div>
-            <StripeExample />
+            <StripeProvider apiKey="pk_test_YOUR_KEY_HERE">
+              <Elements>
+                <CheckoutFormElements
+                  submitText="Submit"
+                  onTokenCreated={data => {
+                    console.log('token created', data);
+                  }}
+                  onTokenCreationFailed={data => {
+                    console.log('token failed', data);
+                  }}
+                />
+              </Elements>
+            </StripeProvider>
           </ReactDependentScript>
         </div>
       </div>
@@ -64,26 +76,6 @@ class JQueryPluginExample extends Component {
 
   render() {
     return <div ref="root" />;
-  }
-}
-
-class StripeExample extends Component {
-  render() {
-    return (
-      <StripeProvider apiKey="pk_test_YOUR_KEY_HERE">
-        <Elements>
-          <CheckoutFormElements
-            submitText="Submit"
-            onTokenCreated={data => {
-              console.log('token created', data);
-            }}
-            onTokenCreationFailed={data => {
-              console.log('token failed', data);
-            }}
-          />
-        </Elements>
-      </StripeProvider>
-    );
   }
 }
 
