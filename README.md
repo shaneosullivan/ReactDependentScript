@@ -14,11 +14,23 @@ ReactDependentScript is a React component that wraps your component's definition
 to load the JavaScript and/or CSS first, then render your content.  It ensures that the external
 content is only loaded once, regardless of how many times the render() function is called.
 
-To use it, wrap your custom content in the component, providing an array of URLs to scripts
+## Using it
+First install with
+
+```
+npm install react-dependent-script
+```
+or
+```
+yarn add react-dependent-script
+```
+
+Now wrap your custom content in the component, providing an array of URLs to scripts
 to load, and optionally a `loadingComponent` property containing a component to show while loading
 e.g.
 
 ```JSX
+import ReactDependentScript from 'react-dependent-script';
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
   scripts={['https://code.jquery.com/jquery-3.2.1.min.js']}
@@ -32,6 +44,7 @@ An alternative to rendering the child components is to provide a callback functi
 after the remote script is loaded, e.g.
 
 ```JSX
+import ReactDependentScript from 'react-dependent-script';
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
   scripts={['https://code.jquery.com/jquery-3.2.1.min.js']}
@@ -45,6 +58,7 @@ after the remote script is loaded, e.g.
 You can also load other interesting libraries, like Stripe
 
 ```JSX
+import ReactDependentScript from 'react-dependent-script';
 <ReactDependentScript
   loadingComponent={<div>Loading Stripe...</div>}
   scripts={['https://js.stripe.com/v3/']}
@@ -68,6 +82,16 @@ You can also load other interesting libraries, like Stripe
 
 See the [demo/src/index.js](https://github.com/shaneosullivan/ReactDependentScript/blob/master/demo/src/index.js)
 file for more complex examples, including loading CSS files.
+
+## Contributing
+
+This project uses the [nwb](https://github.com/insin/nwb/) module for development.  After checking
+out the code, you have three commands available to you:
+
+- `build` builds the code into the `es` and `lib` folders.  You generally don't need these.
+- `start` starts the demo page, which is running the `demo/src/index.js` code.  This is your usual
+development environment, where you'll write examples to validate any changes.
+- `clean` cleans out all build artifacts
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
 [npm]: https://www.npmjs.org/package/npm-package
