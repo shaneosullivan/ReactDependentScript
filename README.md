@@ -21,7 +21,7 @@ e.g.
 ```JSX
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
-  scripts={[https://code.jquery.com/jquery-3.2.1.min.js]}
+  scripts={['https://code.jquery.com/jquery-3.2.1.min.js']}
 >
   <div>jQuery is loaded!</div>
 </ReactDependentScript>
@@ -34,7 +34,7 @@ after the remote script is loaded, e.g.
 ```JSX
 <ReactDependentScript
   loadingComponent={<div>jQuery is loading...</div>}
-  scripts={[https://code.jquery.com/jquery-3.2.1.min.js]}
+  scripts={['https://code.jquery.com/jquery-3.2.1.min.js']}
   renderChildren={() => {
     return <div>Found {$('*').length} DOM nodes on the page</div>
   }}
