@@ -6,11 +6,10 @@ import { CardElement, Elements, StripeProvider, injectStripe } from 'react-strip
 
 class Demo extends Component {
   render() {
-    console.log('ReactDependentScript = ', ReactDependentScript);
     return (
       <div>
         <h1>ReactDependentScript Demo</h1>
-        <h2>Load Jquery</h2>
+        <h2>Load Jquery, using the renderChildren callback</h2>
         <ReactDependentScript
           loadingComponent={<div>Loading JQuery...</div>}
           scripts={[
@@ -19,6 +18,12 @@ class Demo extends Component {
           ]}
           stylesheets={['https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css']}
           renderChildren={() => {
+            // This renderChildren callback is one method of rendering the contents of the
+            // ReactDependentScript component.  It can be useful in cases like this where you
+            // want to run code that is only available after the script is loaded, such as the
+            // $ function from jQuery.
+
+            // Note the use of the $ jQuery function, and inserting a jQueryUI date picker
             return (
               <div>
                 <div>JQuery & JQueryUI script is loaded, here is a count and a date picker!</div>
@@ -30,8 +35,11 @@ class Demo extends Component {
             );
           }}
         />
-        <h2>Load Stripe</h2>
+        <h2>Load Stripe, using child components</h2>
         <div style={{ maxWidth: '500px' }}>
+          {/* This example simply puts the components to render after the script is loaded
+              as child components
+            */}
           <ReactDependentScript
             loadingComponent={<div>Loading Stripe...</div>}
             scripts={['https://js.stripe.com/v3/']}
@@ -60,9 +68,6 @@ class JQueryPluginExample extends Component {
 }
 
 class StripeExample extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
   render() {
     return (
       <StripeProvider apiKey="pk_test_YOUR_KEY_HERE">
