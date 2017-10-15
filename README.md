@@ -66,7 +66,8 @@ You can also load other interesting libraries, like Stripe
 </ReactDependentScript>
 ```
 
-See the `demo/index.js` file for more complex examples, including loading CSS files.
+See the [demo/src/index.js](https://github.com/shaneosullivan/ReactDependentScript/blob/master/demo/src/index.js)
+file for more complex examples, including loading CSS files.
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
 [npm]: https://www.npmjs.org/package/npm-package
