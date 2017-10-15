@@ -1,0 +1,28 @@
+{
+  "name": "ReactDependentScript",
+  "version": "1.0.0",
+  "description": "ReactDependentScript React component",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": ["css", "es", "lib", "umd"],
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "nwb": "0.19.x",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-stripe-elements": "^1.2.0"
+  },
+  "author": "Shane O'Sullivan",
+  "homepage": "https://chofter.com",
+  "license": "MIT",
+  "repository": "",
+  "keywords": ["react-component"]
+}
