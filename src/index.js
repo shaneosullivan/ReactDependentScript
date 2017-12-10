@@ -56,7 +56,6 @@ export default class ReactDependentScript extends Component {
   }
 
   _handleLoad = () => {
-    console.log('_handleLoad', this.state.loadingCount, 'remaining');
     this.setState({ loadingCount: this.state.loadingCount - 1 });
   };
 }
