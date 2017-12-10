@@ -69,8 +69,9 @@ class JQueryPluginExample extends Component {
   shouldComponentUpdate() {
     return false;
   }
-  //https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+
   componentDidMount() {
+    // Simple example of creating a Date Picker with jQuery
     $(this.refs.root).datepicker();
   }
 
