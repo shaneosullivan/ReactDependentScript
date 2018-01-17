@@ -2,7 +2,7 @@
 
 [![npm package][npm-badge]][npm]
 
-ReactDependentScript is a simple React component used to lazily loading JavaScript and CSS resources
+ReactDependentScript is a simple React component used to lazily load JavaScript and CSS resources
 when you need them.
 
 When integrating with third party software it is often necessary to load that project's JavaScript
