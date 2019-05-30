@@ -11,8 +11,7 @@ export default class ReactDependentScript extends Component {
   }
 
   componentWillMount() {
-    const scripts = this.props.scripts;
-    const stylesheets = this.props.stylesheets;
+    const { scripts, stylesheets } = this.props;
 
     // Load the stylesheets first, but don't wait for them to complete, as
     // nothing will break.
@@ -31,17 +30,24 @@ export default class ReactDependentScript extends Component {
     // Look for the script in the body. If not there, inject it.
     if (scripts && scripts.length > 0) {
       const unloadedScripts = scripts.filter(script => {
-        return !scriptUrls[script];
+        return !scriptUrls[script.source || script];
       });
 
       this.setState({ loadingCount: unloadedScripts.length }, () => {
         unloadedScripts.forEach(script => {
-          // if (!scriptUrls[script])
-          scriptUrls[script] = 1;
+          let src = script.source || script;
+          scriptUrls[src] = 1;
           const scriptNode = document.createElement('script');
           scriptNode.type = 'text/javascript';
-          scriptNode.src = script;
+          scriptNode.src = src;
           scriptNode.addEventListener('load', this._handleLoad);
+          scriptNode.addEventListener('error', (
+            script.onerror, // error callback
+            script.norequired && this._handleLoad
+            // using norequired,
+            // user can choose to render children,
+            // even on error
+          ));
           document.body.appendChild(scriptNode);
         });
       });
@@ -49,13 +55,14 @@ export default class ReactDependentScript extends Component {
   }
 
   render() {
+    const { renderChildren, children, loadingComponent } = this.props;
     if (this.state.loadingCount === 0) {
-      if (this.props.renderChildren) {
-        return this.props.renderChildren();
+      if (renderChildren) {
+        return renderChildren();
       }
-      return this.props.children;
+      return children;
     } else {
-      return this.props.loadingComponent || null;
+      return loadingComponent || null;
     }
   }
 

@@ -14,7 +14,15 @@ class Demo extends Component {
           loadingComponent={<div>Loading JQuery...</div>}
           scripts={[
             'https://code.jquery.com/jquery-3.2.1.min.js',
-            'https://code.jquery.com/ui/1.12.1/jquery-ui.js'
+            'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
+            { 
+              source: 'failtoload.js',
+              onerror: console.log,
+              norequired: true
+            },
+            { 
+              source: 'test.js'
+            }
           ]}
           stylesheets={['https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css']}
           renderChildren={() => {
