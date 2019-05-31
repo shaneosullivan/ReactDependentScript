@@ -43,8 +43,8 @@ export default class ReactDependentScript extends Component {
           scriptNode.addEventListener('load', this._handleLoad);
           scriptNode.addEventListener('error', (
             script.onerror, // error callback
-            script.norequired && this._handleLoad
-            // using norequired,
+            script.not_required && this._handleLoad
+            // using not_required,
             // user can choose to render children,
             // even on error
           ));

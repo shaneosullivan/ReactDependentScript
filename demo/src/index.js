@@ -18,7 +18,7 @@ class Demo extends Component {
             { 
               source: 'failtoload.js',
               onerror: console.log,
-              norequired: true
+              not_required: true
             },
             { 
               source: 'test.js'
