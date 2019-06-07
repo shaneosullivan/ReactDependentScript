@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Globally track the nodes previously inserted so each is only inserted once
 let scriptUrls = {};
 let sheetUrls = {};
+
+function isBrowser() {
+  return typeof document !== "undefined" && typeof window !== "undefined";
+}
 
 export default class ReactDependentScript extends Component {
   constructor() {
@@ -11,6 +15,11 @@ export default class ReactDependentScript extends Component {
   }
 
   componentWillMount() {
+    if (!isBrowser()) {
+      // When mounted during server side rendering, do not
+      // attempt to mutate the document, as it will break.
+      return;
+    }
     const { scripts, stylesheets } = this.props;
 
     // Load the stylesheets first, but don't wait for them to complete, as
@@ -18,9 +27,9 @@ export default class ReactDependentScript extends Component {
     if (stylesheets && stylesheets.length > 0) {
       stylesheets.forEach(sheet => {
         if (!sheetUrls[sheet]) {
-          const sheetNode = document.createElement('link');
-          sheetNode.setAttribute('rel', 'stylesheet');
-          sheetNode.setAttribute('href', sheet);
+          const sheetNode = document.createElement("link");
+          sheetNode.setAttribute("rel", "stylesheet");
+          sheetNode.setAttribute("href", sheet);
           document.body.appendChild(sheetNode);
         }
         sheetUrls[sheet] = 1;
@@ -37,17 +46,18 @@ export default class ReactDependentScript extends Component {
         unloadedScripts.forEach(script => {
           let src = script.source || script;
           scriptUrls[src] = 1;
-          const scriptNode = document.createElement('script');
-          scriptNode.type = 'text/javascript';
+          const scriptNode = document.createElement("script");
+          scriptNode.type = "text/javascript";
           scriptNode.src = src;
-          scriptNode.addEventListener('load', this._handleLoad);
-          scriptNode.addEventListener('error', (
-            script.onerror, // error callback
-            script.not_required && this._handleLoad
+          scriptNode.addEventListener("load", this._handleLoad);
+          scriptNode.addEventListener(
+            "error",
+            (script.onerror, // error callback
+            script.not_required && this._handleLoad)
             // using not_required,
             // user can choose to render children,
             // even on error
-          ));
+          );
           document.body.appendChild(scriptNode);
         });
       });
@@ -56,7 +66,7 @@ export default class ReactDependentScript extends Component {
 
   render() {
     const { renderChildren, children, loadingComponent } = this.props;
-    if (this.state.loadingCount === 0) {
+    if (isBrowser() && this.state.loadingCount === 0) {
       if (renderChildren) {
         return renderChildren();
       }
