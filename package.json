@@ -20,7 +20,7 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "nwb": "0.19.x",
+    "nwb": "0.25.x",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-stripe-elements": "^1.2.0"
